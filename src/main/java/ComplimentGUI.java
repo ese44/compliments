@@ -8,18 +8,22 @@ public class ComplimentGUI extends JFrame{
     private JLabel complimentText;
     private JButton getCompliment;
 
-    ComplimentGUI(){
+    ComplimentGUI(){ // ComplimentGUI object constructor
         setContentPane(mainPanel);
         setPreferredSize(new Dimension(400, 150));
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        getCompliment.addActionListener(new ActionListener() {
+        getCompliment.addActionListener(new ActionListener() { // ActionListener for when the compliment button is clicked
             public void actionPerformed(ActionEvent e) {
-                String compliment = ComplimentClient.getCompliment();
-                complimentText.setText(compliment);
+                complimentText.setText("Thinking of a compliment...");
+                ComplimentClient.getCompliment(ComplimentGUI.this); // get the compliment from the ComplimentClient object
             }
         });
+    }
+
+    public void complimentMessage(String compliment) { // method for displaying the compliment
+        complimentText.setText(compliment); // display the compliment in the complimnetText JLabel
     }
 }
